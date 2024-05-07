@@ -1,0 +1,81 @@
+<div class="container-fluid px-sm-3 px-md-5" *ngIf="!isLoading">
+  <h2 class="fw-bold text-center mb-1">
+    <img #test  class="star" src="./assets/star.png" alt="">
+    All Your's Orders
+      <img #test   class="star"   src="./assets/star.png" alt="">
+  </h2>
+  <div class="row mb-5" id="accordionExample">
+
+    <div class="col-md-4">
+      <div class="box border-bottom">
+        <div  *ngFor="let order of userOrders; let i = index;" class="card  me-2 mb-2">
+          <div class="card-header  d-flex justify-content-between align-items-center p-lg-3 p-md-2">
+            <p class="m-1">Order :<span class="fw-bold">#{{i+1}}</span></p>
+            <img (click)="changeCurOrder(order)" width="18" class="cursor-pointer" src="./assets/send_9446400.png" alt="">
+
+          </div>
+          <div class="card-body p-lg-3 p-md-2">
+            <p class="m-1">Total Price :<span class="fw-bold">EGP {{order.totalOrderPrice}}</span></p>
+            <p class="m-1 d-flex align-items-center">Payment Type: <img width="25" class="ms-1" [src]="order.paymentMethodType=='card'?'./assets/online.png':'./assets/delivery.png'" alt="payment type image"></p>
+            <p class="m-1 d-flex align-items-center">Is Delivered :<i style="font-size: 20px;color:#078807;" [class]="order.isDelivered?'fa-solid ms-1 fa-check':'fa-regular ms-1 fa-circle-xmark text-danger'"></i>
+            <p class="m-1 d-flex align-items-center">Is Paid :<i style="font-size: 20px;color:#078807;" [class]="order.isPaid?'fa-solid ms-1 fa-check':'fa-regular ms-1 fa-circle-xmark text-danger'"></i>
+            <p *ngIf="order.isPaid" class="m-1 d-flex align-items-center">Paid At :<span class="fw-bold small"> {{order.paidAt|date}}</span></p>
+            <p *ngIf="!order.isPaid" class="m-1 d-flex align-items-center">Created At :<span class="fw-bold small"> {{order.createdAt|date}}</span></p>
+           </div>
+        </div>
+      </div>
+      <div class="box-shadow"></div>
+    </div>
+    <div class="col-lg-5 col-md-8  border-start">
+      <p *ngIf="currentOrder.isPaid" class="m-1 mb-4 text-muted d-flex align-items-center"><span class="fw-bold small"> {{currentOrder.paidAt|date}}</span></p>
+      <p *ngIf="!currentOrder.isPaid" class="m-1 mb-4 text-muted d-flex align-items-center"><span class="fw-bold small"> {{currentOrder.createdAt|date}}</span></p>
+      <div *ngFor="let item of currentOrder?.cartItems" class="row align-items-center border mx-1 rounded-3 mb-2 pb-2">
+        <div [routerLink]="['details/'+item.product._id]" class="col-lg-2 position-relative col-sm-3 col-4 d-flex align-items-center cursor-pointer">
+          <img [style]="imageLoading?'aspect-ratio: 1/1;':''" (load)="isImageLoading()" class="w-100 image-item" [src]="item.product.imageCover"  [alt]="item.product.title">
+          <ngx-skeleton-loader *ngIf="imageLoading" [theme]="{position:'absolute',top:'0',left:'0',bottom:'0',right:'0',height:'100%',width:'100%'}"/>
+        </div>
+        <div class="col-lg-10 col-8 col-sm-9">
+          <div class="p-1">
+            <p class="m-0">Count :<span class="fw-bold">{{item.count}}</span></p>
+            <p class="m-0">Price :<span class="fw-bold">{{item.price}}</span></p>
+            <a [routerLink]="['/category/',item.product.category._id]"><p class="m-0">Category :<span style="font-size:15px" class="fw-bold text-decoration-underline ">{{item.product.category.name}}</span></p></a>
+            <a [routerLink]="['/brand/',item.product.brand._id]"><p class="m-0">Brand :<span style="font-size:15px" class="fw-bold text-decoration-underline ">{{item.product.brand.name}}</span></p></a>
+          </div>
+           </div>
+    </div>
+    </div>
+    <div class="col-lg-3">
+      <p *ngIf="currentOrder.shippingAddress" class="m-1  mb-4 text-muted d-flex justify-content-end align-items-center"><span class="fw-bold small">{{currentOrder.shippingAddress.city.split(' ').splice(0,1).join(' ')}}/{{currentOrder.shippingAddress.details.split(' ').splice(0,1).join(' ')}}/{{currentOrder.shippingAddress.phone}}</span></p>
+      <h5 class="fw-bold">Summary</h5>
+      <div style="font-size:13px" class="border  rounded-3">
+        <div class="d-flex px-3 py-2 fw-bold justify-content-between align-items-center border-bottom">
+          <p class='m-0 text-muted'>Payment Method</p>
+          <p class="m-0 text-muted" *ngIf="currentOrder.paymentMethodType=='card'">card</p>
+          <p class="m-0 text-muted" *ngIf="currentOrder.paymentMethodType!='card'">cash</p>
+        </div>
+        <div class="d-flex px-3 py-2 fw-bold justify-content-between align-items-center border-bottom">
+          <p class='m-0 text-muted'>Payment State</p>
+          <p class="m-0 text-muted" *ngIf="currentOrder.isPaid">Paid</p>
+          <p class="m-0 text-muted" *ngIf="!currentOrder.isPaid">Not Paid</p>
+        </div>
+        <div class="d-flex px-3 py-2 fw-bold justify-content-between align-items-center border-bottom">
+          <p class='m-0 text-muted'>Delivery State</p>
+          <p class="m-0 text-muted" *ngIf="currentOrder.isDelivered">Delivered</p>
+          <p class="m-0 text-muted" *ngIf="!currentOrder.isDelivered">Not Delivered</p>
+        </div>
+        <div class="d-flex px-3 py-2 fw-bold justify-content-between align-items-center border-bottom">
+          <p class='m-0 text-muted'>Order Subtotal</p>
+          <p class="m-0 text-muted">{{currentOrder.totalOrderPrice}} EGP</p>
+        </div>
+        <div class="d-flex px-3 py-2 fw-bold justify-content-between align-items-center border-bottom">
+          <p class='m-0 text-muted'>Service Fee</p>
+          <p class="m-0 text-muted">{{currentOrder.taxPrice}} EGP</p>
+        </div>
+        <div class="d-flex px-3 py-2 fw-bold justify-content-between align-items-center border-bottom">
+          <p class='m-0 text-muted'>Order Total</p>
+          <p class="m-0 text-muted">{{currentOrder.totalOrderPrice}} EGP</p>
+        </div>
+      </div>
+    </div>
+  </div>
+

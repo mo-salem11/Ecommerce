@@ -1,0 +1,31 @@
+<section class="my-5" *ngIf="brands.length>0">
+  <div  class='d-flex gap-2 mb-4 align-items-center'>
+    <h2 class='fw-semibold text-muted'>Popular Brands</h2>
+  </div>
+  <owl-carousel-o  [options]="customOptions">
+
+    <ng-container   *ngFor="let cat of brands">
+      <ng-template  carouselSlide >
+        <div class="px-3">
+          <a class="position-relative" [routerLink]="['/brand/'+cat._id]">
+            <div class="card cursor-pointer shadow-sm border card-img-top">
+              <img [style]="imageIsLoading?'aspect-ratio: 1/1;':''" (load)="imageLoaded()" height="200" class="" [src]="cat.image" [alt]="cat._id" [title]="cat.name">
+               <div class="card-body">
+                <h4 class='h6 text-main title-cat  small fw-bold  text-center text-nowrap'>{{cat.name}}</h4>
+               </div>
+            </div>
+            <div *ngIf="imageIsLoading" class="position-absolute w-100 h-100 top-0 start-0 end-0 bottom-0 z-3 ">
+              <div class="card overflow-hidden">
+                <ngx-skeleton-loader [theme]="{height:'200px',marginBottom:'-5px'}" />
+              </div>
+                <div class="card-body text-center">
+                  <ngx-skeleton-loader [theme]="{height:'20px',marginTop:'10px',width:'50%'}" />
+                </div>
+             </div>
+          </a>
+        </div>
+      </ng-template>
+    </ng-container>
+
+  </owl-carousel-o>
+</section>

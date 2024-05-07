@@ -1,0 +1,14 @@
+<div>
+  <span *ngFor="let _ of starsArray; let i = index">
+    <i class="fa-solid fa-star rating-color"></i>
+  </span>
+  <span *ngIf="hasHalfStar">
+    <i class="fa-regular rating-color fa-star-half-stroke"></i>
+  </span>
+  <span *ngIf="remainder>.75 ">
+    <i class="fa-solid fa-star rating-color"></i>
+  </span>
+  <span *ngFor="let _ of EmptyStar; let i = index">
+    <i class="fa-regular fa-star rating-color"></i>
+  </span>
+</div>

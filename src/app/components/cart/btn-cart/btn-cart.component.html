@@ -1,0 +1,4 @@
+ <section>
+  <button *ngIf="!isLoading" style="font-size: 12px;" class='btn text-nowrap  text-muted p-1 border p-0'> <i class='fa-solid {{icon}} '></i><span class=' ms-1 fw-bold'>{{text}}</span></button>
+  <div *ngIf="isLoading" class='ms-4'><i class='fa fa-spinner fs-6 text-muted fa-spin'></i></div>
+ </section>

@@ -1,0 +1,18 @@
+.progress-bar{
+    padding: 20px;
+    border-radius: 16px;
+    background: linear-gradient(90deg, rgb(201, 244, 181) 0%, rgb(245, 235, 198) 100%);
+}
+.progress{
+  background-color: white;
+  height: 8px;
+}
+.progress .track{
+  height: 100%;
+    width: 40%;
+    border-radius: 24px;
+    background: linear-gradient(90deg, rgb(218, 249, 28) 0%, rgb(116, 218, 91) 100%);
+}
+ .card-header{
+ background-color:rgb(242, 252, 240);
+}

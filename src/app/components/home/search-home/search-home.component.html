@@ -1,0 +1,42 @@
+<section [ngClass]="mobileSize?'p-3':'p-4'" class="bg-main search-section  my-5 rounded-4  w-75 mx-auto">
+  <div class="search-input position-relative bg-light rounded">
+    <input #searchInput (keyup.enter)="openSearch(searchInput)" (focus)="onFoucs()" (blur)="onBlur(searchInput)" (input)="searchResult(searchInput.value)"
+    type="search" [ngClass]="mobileSize?'p-2':'p-3'" class="form-control" placeholder="Search for products you like....">
+    <ng-container *ngIf="onInputStatus">
+      <div
+      #resultList
+      style="
+       max-height: 300px;
+       overflow-y: auto;
+       scrollbar-color: transparent transparent; "
+       class='rounded mt-2 bg-light shadow  position-absolute w-100  z-3'
+       >
+      <h2 *ngIf="searchEmpty || searchInput.value.length == 0 ||searchArr.length==0" class='fw-bolder p-3 h5'>No Results To Show</h2>
+     <div *ngIf="searchArr.length>0" class='p-3'>
+      <h2 *ngIf="searchInput.value.length > 0" class='fw-bolder h5'>Search Results</h2>
+     <ng-container *ngIf="searchInput.value.length > 0">
+      <div *ngFor="let product of searchArr">
+        <a [routerLink]="['details/'+product._id]" class="text-decoration-none text-black">
+          <div class="row py-2 border-bottom">
+               <div  class="col-4 col-md-2 col-lg-1">
+                   <img class='w-100' src={{product?.imageCover}} alt="imagecover" />
+               </div>
+               <div class="col-8 col-md-10 col-lg-11 d-flex justify-content-between align-items-center">
+                   <div>
+                       <span class='text-main'>{{product?.category?.name}}</span>
+                       <p class='m-1'>{{product?.title?.split(' ')?.slice(0,3)?.join(' ')}}</p>
+                   </div>
+               </div>
+          </div>
+
+        </a>
+       </div>
+     </ng-container>
+     </div>
+
+     </div>
+    </ng-container>
+
+  </div>
+
+</section>

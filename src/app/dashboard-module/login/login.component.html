@@ -1,0 +1,40 @@
+<section class="w-75 shadow bg-main-light my-5 rounded-3 mx-auto p-5">
+  <h1 class="mb-4">
+    Login To Dashboard :
+  </h1>
+  <div class="row">
+    <div class="col-md-7">
+      <form [formGroup]="loginForm" (ngSubmit)="handleForm()">
+
+        <div class="form-item mb-2">
+          <label for="user">User Name : </label>
+          <input placeholder="admin" formControlName="user" type="text" class="form-control mb-1" id="user">
+          <div *ngIf="loginForm.get('user')?.errors && loginForm.get('user')?.touched" class="alert alert-danger p-1 small">
+            <p class="m-0" *ngIf="loginForm.get('user')?.getError('required')">User is required</p>
+            <p class="m-0" *ngIf="loginForm.get('user')?.getError('pattern')">User Name is not correct</p>
+          </div>
+        </div>
+        <div class="form-item mb-2">
+          <label for="password">Password : </label>
+          <input placeholder="12345" formControlName="password" type="password" class="form-control mb-1" id="password">
+          <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="alert alert-danger p-1 small">
+            <p class="m-0" *ngIf="loginForm.get('password')?.getError('required')">Password is required</p>
+            <p class="m-0" *ngIf="loginForm.get('password')?.getError('pattern')">Password is not correct</p>
+          </div>
+        </div>
+        <button [disabled]="loginForm.invalid" class="main-btn d-block w-100 mt-3 px-3 fs-5 py-2">
+         <span *ngIf="!isLoading">Login</span> <span *ngIf="isLoading"><i class="fa fa-spin fa-spinner"></i> </span>
+        </button>
+
+    </form>
+     <p *ngIf="errMsg" class="alert alert-danger mt-2 small mb-0">{{errMsg}}</p>
+     <a class="text-main text-decoration-underline fw-bold small d-inline-block mt-1" routerLink="/home">Go Back To Home Page</a>
+    </div>
+    <div class="col-md-5">
+      <div class="col-md-5 d-none d-md-flex align-items-end">
+        <img width="300" class="up-down-animation" src="./assets/Tablet login-amico.png" alt="login image">
+      </div>
+    </div>
+  </div>
+
+</section>

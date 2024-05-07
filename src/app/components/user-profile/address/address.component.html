@@ -1,0 +1,158 @@
+<section class="container">
+  <div class="row">
+    <div class="col-lg-4 border-bottom mt-3">
+      <div class="box">
+        <div *ngFor="let address of addresses;let i=index" class="card  me-2 mb-2">
+          <div class="card-header d-flex justify-content-between p-lg-3 p-md-2">
+           <div> address <span class="fw-bolder">#{{i+1}}</span></div>
+            <div>
+              <i (click)="deleteAddress(address._id)" class="fa-regular fa-trash-can me-2 cursor-pointer"></i>
+              <i (click)="editAddress(address._id)" class="fa-regular fa-pen-to-square cursor-pointer"></i>
+            </div>
+          </div>
+          <div class="card-body p-lg-3 p-md-2">
+            <p class="small">Name: <span class="fw-bold">{{address.name}}</span></p>
+            <p class="small">City: <span class="fw-bold">{{address.city}}</span></p>
+            <p class="small">Phone: <span class="fw-bold">{{address.phone}}</span></p>
+            <p class="small">Details: <span class="fw-bold">{{address.details}}</span></p>
+
+           </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="card my-4">
+        <div class="card-header fw-medium">Address Info</div>
+        <div class="card-body">
+          <form [formGroup]="addAddressFrom" (ngSubmit)="onSubmit()">
+            <div class="row gx-3">
+              <div class="col-md-6 ">
+                <div class="mb-3">
+                  <label
+                    class="small mb-1 text-muted text-capitalize"
+                    for="inputLocation"
+                    >Add Your Location</label
+                  >
+                  <input
+                    class="form-control"
+                    id="inputLocation"
+                    type="text"
+                    placeholder="Enter Your Location"
+                    formControlName="name"
+                    [ngClass]="{
+                      'is-valid':!addAddressFrom.get('name')?.errors,
+                      'is-invalid':addAddressFrom.get('name')?.errors&&addAddressFrom.get('name')?.touched
+                    }"
+                  />
+                  <div *ngIf="addAddressFrom.get('name')?.errors&&addAddressFrom.get('name')?.touched"  class=" mb-3">
+                    <p *ngIf="addAddressFrom.get('name')?.getError('required')" class="alert alert-danger small p-0 px-1 m-0">
+                     Your Location is required
+                    </p>
+                    <p *ngIf="addAddressFrom.get('name')?.getError('minlength')" class="alert alert-danger small p-0 px-1 m-0">
+                      Your Location must be at least 3 characters
+                    </p>
+                    <p *ngIf="addAddressFrom.get('name')?.getError('maxlength')" class="alert alert-danger small p-0 px-1 m-0">
+                      Your Location must be at most 10 characters
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div>
+                  <label
+                    class="small mb-1 text-muted text-capitalize"
+                    for="inputLocation"
+                    >Phone</label
+                  >
+                  <input
+                    class="form-control"
+                    id="inputLocation"
+                    type="tel"
+                    placeholder="Enter Your Phone"
+                    formControlName="phone"
+                    [ngClass]="{
+                      'is-valid':!addAddressFrom.get('phone')?.errors,
+                      'is-invalid':addAddressFrom.get('phone')?.errors&&addAddressFrom.get('phone')?.touched
+                    }"
+                  />
+                </div>
+                <div  *ngIf="addAddressFrom.get('phone')?.errors&&addAddressFrom.get('phone')?.touched" class="mb-3 mt-1">
+                  <p *ngIf="addAddressFrom.get('phone')?.getError('required')"class="alert alert-danger small p-0 px-1 m-0">phone is required</p>
+                  <p *ngIf="addAddressFrom.get('phone')?.getError('pattern')" class="alert alert-danger small p-0 px-1 m-0">
+                    Please enter a valid Egyptian phone number
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="row gx-3 mb-1">
+              <div class="col-md-6 mb-3">
+                <label
+                  class="small mb-1 text-muted text-capitalize"
+                  for="inputcity"
+                  >City
+                </label>
+                <input
+                  class="form-control"
+                  id="inputcity"
+                  type="text"
+                  placeholder="Enter Your City"
+                  formControlName="city"
+                  [ngClass]="{
+                    'is-valid':!addAddressFrom.get('city')?.errors,
+                    'is-invalid':addAddressFrom.get('city')?.errors&&addAddressFrom.get('city')?.touched
+                  }"
+                />
+                <div *ngIf="addAddressFrom.get('city')?.errors&&addAddressFrom.get('city')?.touched"  class=" mb-3">
+                  <p *ngIf="addAddressFrom.get('city')?.getError('required')" class="alert alert-danger small p-0 px-1 m-0">
+                   City is required
+                  </p>
+                  <p *ngIf="addAddressFrom.get('city')?.getError('minlength')" class="alert alert-danger small p-0 px-1 m-0">
+                    City must be at least 3 characters
+                  </p>
+                  <p *ngIf="addAddressFrom.get('city')?.getError('maxlength')" class="alert alert-danger small p-0 px-1 m-0">
+                    City Location must be at most 10 characters
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label
+                  class="small mb-1 text-muted text-capitalize"
+                  for="inputdetails"
+                  >Extra Details</label
+                >
+                <input
+                  class="form-control"
+                  id="inputdetails"
+                  type="text"
+                  placeholder="Enter your Details"
+                  formControlName="details"
+                  [ngClass]="{
+                    'is-valid':!addAddressFrom.get('details')?.errors,
+                    'is-invalid':addAddressFrom.get('details')?.errors&&addAddressFrom.get('details')?.touched
+                  }"
+                />
+                <div *ngIf="addAddressFrom.get('details')?.errors&&addAddressFrom.get('details')?.touched"  class=" mb-3">
+                  <p *ngIf="addAddressFrom.get('details')?.getError('required')" class="alert alert-danger small p-0 px-1 m-0">
+                   Details is required
+                  </p>
+                  <p *ngIf="addAddressFrom.get('details')?.getError('minlength')" class="alert alert-danger small p-0 px-1 m-0">
+                    Details must be at least 3 characters
+                  </p>
+                </div>
+              </div>
+            </div>
+            <button (click)="addNewAddressFlag('add')" *ngIf="!updateAddressFlag" [disabled]="addAddressFrom.invalid" class="my-3  py-2 main-btn text-capitalize  w-100">
+              <span *ngIf="!isLoading" class="fw-bolder px-2">Add Address</span>
+              <span *ngIf="isLoading" class="fw-bolder px-2">loading...</span>
+          </button>
+          <button (click)="updateNewAddressFlag('update')" *ngIf="updateAddressFlag" [disabled]="addAddressFrom.invalid" class="my-3  py-2 main-btn bg-warning text-capitalize  w-100">
+            <span *ngIf="!isLoading" class="fw-bolder px-2">Update Address</span>
+            <span *ngIf="isLoading" class="fw-bolder px-2">loading...</span>
+          </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

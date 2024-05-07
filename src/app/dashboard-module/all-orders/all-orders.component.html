@@ -1,0 +1,226 @@
+<section *ngIf="!isLoading" class="container-fluid">
+  <div class="row">
+    <div class="col-2 col-sm-3 col-lg-2  p-0 min-vh-100 side rounded-1">
+     <app-side-nav></app-side-nav>
+    </div>
+    <div style="background-color: #F1F5F9;" class="col-10 col-sm-9 col-lg-10">
+       <div class="row align-items-center my-3 mt-3">
+         <div class="col-lg-5">
+          <h2 class="h6 p-2 text-center fw-bold">Orders Lists</h2>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div style="background-color: #FFFFFF;" class="p-3 rounded-2  d-flex  align-items-center">
+                  <div style="background-color: #EFF6FF;color:#3B82F6;" class="p-2 rounded-1 me-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="boxes" class="lucide lucide-boxes"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"></path><path d="m7 16.5-4.74-2.85"></path><path d="m7 16.5 5-3"></path><path d="M7 16.5v5.17"></path><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"></path><path d="m17 16.5-5-3"></path><path d="m17 16.5 4.74-2.85"></path><path d="M17 16.5v5.17"></path><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"></path><path d="M12 8 7.26 5.15"></path><path d="m12 8 4.74-2.85"></path><path d="M12 13.5V8"></path></svg>
+                  </div>
+                  <div>
+                    <span class="fw-bold d-block">{{couterOrders}}</span>
+                    <span style="font-size: 12px;text-wrap: nowrap;" calss="d-block">Total Orders</span>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-6 ">
+                <div style="background-color:#FFFFFF;" class=" p-3 rounded-2  shadow-sm d-flex  align-items-center">
+                  <div style="background-color:#F0F9FF;color:#0EA5E9;" class="p-2 rounded-1 me-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="package-plus" class="lucide lucide-package-plus"><path d="M16 16h6"></path><path d="M19 13v6"></path><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"></path><path d="m7.5 4.27 9 5.15"></path><polyline points="3.29 7 12 12 20.71 7"></polyline><line x1="12" x2="12" y1="22" y2="12"></line></svg>
+                  </div>
+                  <div>
+                    <span class="fw-bold d-block">{{counterNewOrders}}</span>
+                    <span style="font-size: 12px;text-wrap: nowrap;" calss="d-block">New Orders</span>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-6">
+                <div style="background-color:#FFFFFF;" class=" p-3 rounded-2 shadow-sm d-flex  align-items-center">
+                  <div style="background-color: #FEFCE8;color:#EAB308;" class="p-2 rounded-1 me-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="loader" class="lucide lucide-loader"><line x1="12" x2="12" y1="2" y2="6"></line><line x1="12" x2="12" y1="18" y2="22"></line><line x1="4.93" x2="7.76" y1="4.93" y2="7.76"></line><line x1="16.24" x2="19.07" y1="16.24" y2="19.07"></line><line x1="2" x2="6" y1="12" y2="12"></line><line x1="18" x2="22" y1="12" y2="12"></line><line x1="4.93" x2="7.76" y1="19.07" y2="16.24"></line><line x1="16.24" x2="19.07" y1="7.76" y2="4.93"></line></svg>
+                  </div>
+                  <div>
+                    <span class="fw-bold d-block">{{counterPendingOrders}}</span>
+                    <span style="font-size: 12px;text-wrap: nowrap;" calss="d-block">Pending Orders</span>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-6">
+                <div style="background-color:#FFFFFF;" class=" p-3 rounded-2 shadow-sm d-flex align-items-center">
+                  <div style="background-color: #FAF5FF;color:#A855F7;" class="p-2 rounded-1 me-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="truck" class="lucide lucide-truck"><path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"></path><path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"></path><circle cx="7" cy="18" r="2"></circle><path d="M15 18H9"></path><circle cx="17" cy="18" r="2"></circle></svg>
+                  </div>
+                  <div>
+                    <span class="fw-bold d-block">{{counterShippingOrders}}</span>
+                    <span style="font-size: 12px;text-wrap: nowrap;" calss="d-block">Shipping Orders</span>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-6">
+                <div style="background-color:#FFFFFF;" class=" p-3 rounded-2 d-flex shadow-sm align-items-center">
+                  <div style="background-color: #EAFAF7;color:#249782;" class="p-2 rounded-1 me-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="package-check" class="lucide lucide-package-check"><path d="m16 16 2 2 4-4"></path><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"></path><path d="m7.5 4.27 9 5.15"></path><polyline points="3.29 7 12 12 20.71 7"></polyline><line x1="12" x2="12" y1="22" y2="12"></line></svg>
+                  </div>
+                  <div>
+                    <span class="fw-bold d-block">{{counterDeliveredOrders}}</span>
+                    <span style="font-size: 12px;text-wrap: nowrap;" calss="d-block">Delivered Orders</span>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-6 mb-3 mb-lg-0">
+                <div style="background-color:#FFFFFF;" class=" p-3 rounded-2 d-flex shadow-sm align-items-center">
+                  <div style="background-color: #FEF2F2;color:#EF4444;" class="p-2 rounded-1  me-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="package-x" class="lucide lucide-package-x"><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"></path><path d="m7.5 4.27 9 5.15"></path><polyline points="3.29 7 12 12 20.71 7"></polyline><line x1="12" x2="12" y1="22" y2="12"></line><path d="m17 13 5 5m-5 0 5-5"></path></svg>
+                  </div>
+                  <div>
+                    <span class="fw-bold d-block">{{counterCancelledOrders}}</span>
+                    <span style="font-size: 12px;text-wrap: nowrap;" calss="d-block">Cancelled Orders</span>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+         </div>
+         <div class="col-lg-7 ">
+           <div class="shadow-sm" [chart]="lineChart"></div>
+         </div>
+         <div class="col-md-6 mt-3">
+           <div class="shadow-sm" [chart]="testChart"></div>
+        </div>
+         <div  class="col-md-6 mt-3 ">
+           <div class="shadow-sm" [chart]="testChart2"></div>
+        </div>
+       </div>
+       <div style="background-color: #FFFFFF;" class="p-4 shadow-sm mb-5 rounded">
+          <h2 class="h5 mb-4 fw-bold text-center">Outstanding Orders</h2>
+          <div class="d-flex searchTable flex-wrap-reverse flex-md-nowrap w-75 mx-auto mb-4 gap-2 justify-content-center align-items-center">
+            <input [(ngModel)]="inputSearch" placeholder="Search for.." type="text" class="form-control">
+            <div class="d-flex mb-2 mb-md-0 flex-shrink-0 text-nowrap mx-auto  align-items-center">
+              <select (ngModelChange)="onSortChanges($event)"  [(ngModel)]="sortBy" class="form-select form-select-sm" aria-label="Small select example">
+                <option class="text-center" value="earliest">earliest orders</option>
+                <option class="text-center" value="latest">latest orders</option>
+              </select>
+            </div>
+          </div>
+          <div class="responsive_table">
+            <table class="mb-0 table text-center">
+              <thead>
+                <tr>
+                  <th>
+                    <div (click)="toggoleSortId()" class="d-flex align-items-center">
+                      Order ID
+                      <i *ngIf="sortAscenId" style="bottom:-2px" class="fa-solid position-relative fa-sort-up ms-1"></i>
+                      <i *ngIf="!sortAscenId" style="bottom:3px" class="fa-solid position-relative fa-sort-down ms-1"></i>
+                    </div>
+                  </th>
+                  <th>Order Date</th>
+                  <th>Deadline</th>
+                  <th>Customer</th>
+                  <th>IsPaid</th>
+                  <th>IsDelivered</th>
+                  <th>Payment Method</th>
+                  <th>Total Price</th>
+                  <th class="text-right">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngIf="!sortAscenId">
+                  <tr  *ngFor="let order of allOrders
+                  |InputdashBoard:inputSearch
+                  |paginate:{
+                    id:'orderPaginate',
+                    itemsPerPage:pageSize,
+                    currentPage,
+                    totalItems:total}">
+                      <td style="color:rgb(59 130 246/60%)" class="h6 fw-bold small">#{{order.id}}</td>
+                      <td class="h6 small ">{{order.createdAt|date}}</td>
+                      <td class="h6 small ">{{order.updatedAt|date}}</td>
+                      <td class="h6 small ">{{order.user.name|titlecase}}</td>
+                      <td>
+                       <img *ngIf="!order.isPaid" width="23" src="./assets/delete_11034840.png" alt="">
+                        <img *ngIf="order.isPaid" width="20" src="./assets/check_14025690.png" alt="">
+                      </td>
+                      <td>
+                       <img *ngIf="!order.isDelivered" width="23" src="./assets/delete_11034840.png" alt="">
+                        <img *ngIf="order.isDelivered" width="20" src="./assets/check_14025690.png" alt="">
+                      </td>
+                      <td>
+                       <img *ngIf="order.paymentMethodType=='card'" width="20" src="./assets/online.png" alt="">
+                        <img *ngIf="order.paymentMethodType=='cash'" width="20" src="./assets/delivery.png"alt="">
+                      </td>
+                      <td class="h6 fw-semibold text-muted small ">EG{{order.totalOrderPrice}}</td>
+                      <td class="h6 small text-muted">
+                        <div *ngIf="order.shippingAddress">
+                          <p class="m-1">{{order.shippingAddress.city}}</p>
+                          <p class="m-1 fw-bold">{{order.shippingAddress.phone}}</p>
+                          <p class="m-1">{{order.shippingAddress.details}}</p>
+                        </div>
+                        <p *ngIf="!order.shippingAddress">Unknown</p>
+                      </td>
+                    </tr>
+                </ng-container>
+                <ng-container *ngIf="sortAscenId">
+                  <tr  *ngFor="let order of allOrders.slice().reverse()
+                  |InputdashBoard:inputSearch
+                  |paginate:{
+                    id:'orderPaginate',
+                    itemsPerPage:pageSize,
+                    currentPage,
+                    totalItems:total}">
+                      <td style="color:rgb(59 130 246/60%)" class="h6 fw-bold small">#{{order.id}}</td>
+                      <td class="h6 small ">{{order.createdAt|date}}</td>
+                      <td class="h6 small ">{{order.updatedAt|date}}</td>
+                      <td class="h6 small ">{{order.user.name|titlecase}}</td>
+                      <td>
+                       <img *ngIf="!order.isPaid" width="23" src="./assets/delete_11034840.png" alt="">
+                        <img *ngIf="order.isPaid" width="20" src="./assets/check_14025690.png" alt="">
+                      </td>
+                      <td>
+                       <img *ngIf="!order.isDelivered" width="23" src="./assets/delete_11034840.png" alt="">
+                        <img *ngIf="order.isDelivered" width="20" src="./assets/check_14025690.png" alt="">
+                      </td>
+                      <td>
+                       <img *ngIf="order.paymentMethodType=='card'" width="20" src="./assets/online.png" alt="">
+                        <img *ngIf="order.paymentMethodType=='cash'" width="20" src="./assets/delivery.png"alt="">
+                      </td>
+                      <td class="h6 fw-semibold text-muted small ">EG{{order.totalOrderPrice}}</td>
+                      <td class="h6 small text-muted">
+                        <div *ngIf="order.shippingAddress">
+                          <p class="m-1">{{order.shippingAddress.city}}</p>
+                          <p class="m-1 fw-bold">{{order.shippingAddress.phone}}</p>
+                          <p class="m-1">{{order.shippingAddress.details}}</p>
+                        </div>
+                        <p *ngIf="!order.shippingAddress">Unknown</p>
+                      </td>
+                    </tr>
+                </ng-container>
+
+
+
+              </tbody>
+            </table>
+            <div  class="d-flex mt-4 justify-content-center align-items-center">
+              <pagination-controls class="AllProdcutsPagenation"  id="orderPaginate"
+              (pageChange)="pageChanged($event)"
+              (pageBoundsCorrection)="pageChanged($event)"
+              [maxSize]="5"
+              [directionLinks]="true"
+              [autoHide]="true"
+              [responsive]="true"
+              previousLabel=""
+              nextLabel=""
+              screenReaderPaginationLabel="Pagination"
+              screenReaderPageLabel="page"
+              screenReaderCurrentLabel="You're on page">
+           </pagination-controls>
+            </div>
+          </div>
+
+        </div>
+
+    </div>
+  </div>
+</section>
+

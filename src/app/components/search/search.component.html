@@ -1,0 +1,298 @@
+<section>
+  <div style="padding-bottom: 60px;" class="container-fluid px-3">
+
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="filter-side">
+          <div (click)="toggle()" class="d-flex d-lg-none justify-content-center align-items-center">
+            <p class="fw-bolder m-0 me-2 fs-5">Search By Filter</p>
+            <i style="font-size: 20px;" class="fa-solid  fa-bars-staggered"></i>
+          </div>
+          <div *ngIf="showToggle">
+            <div (click)="toggleCat($event)" class="categories mb-3">
+              <div class="d-flex cat-title px-0 py-2 align-items-center cursor-pointer text-muted ">
+                 <i class="plus">
+                   <div *ngIf="!showCat">
+                     <img src="./assets/plus-grey.svg" alt="">
+                   </div>
+                   <div *ngIf="showCat">
+                     <img src="./assets/minus-grey.svg" alt="">
+                   </div>
+                 </i>
+               Categories
+              </div>
+              <div *ngIf="showCat" style="margin-left:7px" class="d-block position-relative list">
+                <ul (click)="filterCategoriy($event.target,$event)">
+                   <a role="button" style="font-size: 14px;" class="text-decoration-underline cursor-pointer fw-bold">
+                     <li>All Categories</li>
+                   </a>
+                 <li>
+                   <a>
+                     <div (click)="toggleSubCatWoman($event)" class="d-flex cat-title px-0 py-2 align-items-center cursor-pointer text-muted ">
+                       <i class="plus">
+                         <div *ngIf="!showSubCatWoman">
+                           <img src="./assets/plus-grey.svg" alt="">
+                         </div>
+                         <div *ngIf="showSubCatWoman">
+                           <img src="./assets/minus-grey.svg" alt="">
+                         </div>
+                       </i>
+                      Women
+                    </div>
+                    <div *ngIf="showSubCatWoman" class="d-block  position-relative list">
+                     <ul>
+                       <li>
+                         <a>
+                           <div style="font-size: 14px;" class="brand-title px-0 py-1 cursor-pointer  text-decoration-underline fw-bold">Women's Fashion</div>
+                         </a>
+                       </li>
+                       </ul>
+                     </div>
+                   </a>
+                 </li>
+                 <li>
+                   <a>
+                     <div (click)="toggleSubCatmen($event)" class="d-flex cat-title px-0 py-2 align-items-center cursor-pointer text-muted ">
+                       <i class="plus">
+                         <div *ngIf="!showtoggleSubCatMen">
+                           <img src="./assets/plus-grey.svg" alt="">
+                         </div>
+                         <div *ngIf="showtoggleSubCatMen">
+                           <img src="./assets/minus-grey.svg" alt="">
+                         </div>
+                       </i>
+                       Men
+                    </div>
+                    <div *ngIf="showtoggleSubCatMen" class="d-block  position-relative list">
+                     <ul>
+                       <li>
+                         <a>
+                           <div style="font-size: 14px" class="brand-title px-0 py-1 cursor-pointer text-black fw-bold  text-decoration-underline">Men's Fashion</div>
+                         </a>
+                       </li>
+                       </ul>
+                     </div>
+                   </a>
+                 </li>
+                 <li>
+                   <a>
+                     <div (click)="toggleSubCatElec($event)" class="d-flex cat-title px-0 py-2 align-items-center cursor-pointer text-muted">
+                       <i class="plus">
+                         <div *ngIf="!showtoggleSubCatElec">
+                           <img src="./assets/plus-grey.svg" alt="">
+                         </div>
+                         <div *ngIf="showtoggleSubCatElec">
+                           <img src="./assets/minus-grey.svg" alt="">
+                         </div>
+                       </i>Electronics</div>
+                     <div *ngIf="showtoggleSubCatElec" class="d-block  position-relative list">
+                       <ul>
+                         <li>
+                           <a>
+                             <div style="font-size: 14px;" class="brand-title px-0 py-1 cursor-pointer fw-bold text-decoration-underline">Electronics</div>
+                           </a>
+                         </li>
+                         <li>
+                           <a>
+                             <div class="brand-title px-0 py-1 cursor-pointer text-muted ">Accessories</div>
+                           </a>
+                         </li>
+                         <li>
+                           <a>
+                             <div class="brand-title px-0 py-1 cursor-pointer text-muted ">Tvs</div>
+                           </a>
+                         </li>
+                         <li>
+                           <a>
+                             <div class="brand-title px-0 py-1 cursor-pointer text-muted ">Video Games</div>
+                           </a>
+                         </li>
+                         <li>
+                           <a>
+                             <div class="brand-title px-0 py-1 cursor-pointer text-muted ">Computers Parts</div>
+                           </a>
+                         </li>
+                         <li>
+                           <a>
+                             <div class="brand-title px-0 py-1 cursor-pointer text-muted ">Network products</div>
+                           </a>
+                         </li>
+                       </ul>
+                     </div>
+                   </a>
+                 </li>
+                </ul>
+              </div>
+            </div>
+            <div  (click)="toggleBrand($event)" class="Brands mb-3">
+              <div class="d-flex cat-title px-0 py-2 align-items-center cursor-pointer text-muted ">
+                 <i class="plus">
+                   <div *ngIf="!showBrand">
+                     <img src="./assets/plus-grey.svg" alt="">
+                   </div>
+                   <div *ngIf="showBrand">
+                     <img src="./assets/minus-grey.svg" alt="">
+                   </div>
+                 </i>
+               Brands
+              </div>
+              <div *ngIf="showBrand" style="margin-left:7px" class="d-block  position-relative list">
+                <ul (click)="filterBrand($event.target,$event)">
+                   <a style="font-size: 14px;" class="text-decoration-underline cursor-pointer fw-bold">
+                     <li>All Brands</li>
+                   </a>
+                 <li>
+                   <a>
+                     <div class="brand-title px-0 py-2 cursor-pointer text-muted ">DeFacto
+                    </div>
+                   </a>
+                 </li>
+                 <li>
+                   <a>
+                     <div class="brand-title px-0 py-2 cursor-pointer text-muted ">
+                       Adidas
+                    </div>
+                   </a>
+                 </li>
+                 <li>
+                   <a>
+                     <div class="brand-title px-0 py-2 cursor-pointer text-muted ">
+                       Puma
+                    </div>
+                   </a>
+                 </li>
+                 <li>
+                   <a>
+                     <div class="brand-title px-0 py-2 cursor-pointer text-muted ">
+                       Jack & Jones
+                    </div>
+                   </a>
+                 </li>
+                 <li>
+                   <a>
+                     <div class="brand-title px-0 py-2 cursor-pointer text-muted ">
+                      Canon
+                    </div>
+                   </a>
+                 </li>
+                 <li>
+                   <a>
+                     <div class="brand-title px-0 py-2 cursor-pointer text-muted ">
+                       Samsung
+                    </div>
+                   </a>
+                 </li>
+                 <li>
+                   <a>
+                     <div class="brand-title px-0 py-2 cursor-pointer text-muted ">
+                       Dell
+                    </div>
+                   </a>
+                 </li>
+                 <li>
+                   <a>
+                     <div class="brand-title px-0 py-2 cursor-pointer text-muted ">
+                       Sony
+                    </div>
+                   </a>
+                 </li>
+                </ul>
+              </div>
+            </div>
+
+             <div class="price">
+               <div (click)="togglePrice()" class="d-flex cat-title px-0 py-2 align-items-center cursor-pointer text-muted ">
+                 <i class="plus">
+                   <div *ngIf="!showTogglePrice">
+                     <img src="./assets/plus-grey.svg" alt="">
+                   </div>
+                   <div *ngIf="showTogglePrice">
+                     <img src="./assets/minus-grey.svg" alt="">
+                   </div>
+                 </i>
+                Price
+               </div>
+               <div *ngIf="showTogglePrice">
+                 <mat-slider
+                 class="w-75"
+                 id="slider"
+                 name="slider"
+                 min="149"
+                 max="45000"
+                 step="0.5"
+                 value="1.5"
+               >
+                 <input [(ngModel)]="priceRange" matSliderThumb />
+               </mat-slider>
+               <label for="customRange2  " class="form-label ms-2 fw-bold">
+                 {{ priceRange | currency : "EGP " }}</label
+               >
+               </div>
+             </div>
+             <div class="rate">
+               <div (click)="toggleRate()" class="d-flex cat-title px-0 py-2 align-items-center cursor-pointer text-muted ">
+                 <i class="plus">
+                   <div *ngIf="!showtoggleRate">
+                     <img src="./assets/plus-grey.svg" alt="">
+                   </div>
+                   <div *ngIf="showtoggleRate">
+                     <img src="./assets/minus-grey.svg" alt="">
+                   </div>
+                 </i>
+                Rate
+               </div>
+               <div *ngIf="showtoggleRate" #stars class="d-flex ms-2 mt-3 align-items-center">
+                  <i
+                  role="button"
+                  *ngFor="let star of [1, 2, 3, 4, 5]"
+                  class="fa-solid fa-star me-1 fs-5 rating-color"
+                  (click)="onStarClick(star)"
+                  >
+
+                  </i>
+               </div>
+             </div>
+          </div>
+           </div>
+
+
+   </div>
+      <div class="col-lg-9">
+        <div  class="mt-3 mb-5 d-flex justify-content-between align-items-center">
+          <div>
+            <h2 class="h6 text-muted">{{lenProducts}} Results For "<span class="fw-bold">{{nameSearch}}</span>"</h2>
+          </div>
+           <div class="flex-grow-1 mx-5">
+              <input [(ngModel)]="inputSearch" type="search" placeholder="Search" class="form-control form-control-sm d-none d-md-block">
+           </div>
+          <div class="d-flex text-nowrap align-items-center">
+            <h2 class="text-muted me-2 h6">Sort By</h2>
+            <select [(ngModel)]="sortBy" class="form-select form-select-sm" aria-label="Small select example">
+              <option class="text-center" value="highest">PRICE: HIGH TO LOW</option>
+              <option class="text-center" value="lowest">PRICE: LOW TO HIGH</option>
+              <option class="text-center" value="top rated">BEST RATED</option>
+              <option class="text-center" value="a - z">NAME(A-Z)</option>
+              <option class="text-center" value="z - a">NAME(Z-A)</option>
+            </select>
+          </div>
+        </div>
+        <div #items class="row gy-3 gy-sm-5">
+          <div
+          *ngFor="let product of homeSearchProducts
+          |price:priceRange
+          |search:inputSearch
+          |rating:selectedratingNum
+          |selectedBrand:selectedBrandName
+          |selectedCategory:selectedCategoryName
+          |sorting:sortBy
+          " class="col-6  col-md-4">
+              <app-product (openModal)="openModal($event)"  [item]="product"></app-product>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <app-modal [item]="selectedModalItem"></app-modal>
+</section>

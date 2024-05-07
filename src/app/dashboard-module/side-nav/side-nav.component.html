@@ -1,0 +1,12 @@
+<div class="">
+  <div class="image position-relative">
+   <label class="d-block"> <img class="mx-auto cursor-pointer d-block" width="150" [src]="image?image:'./assets/avatar2-removebg-preview.png'" alt="avatar image"></label>
+   </div>
+  <h2 *ngIf="userName" class="text-center">{{userName.split(' ').splice(0,1).join(' ')}}</h2>
+  <h2 *ngIf="!userName" class="text-center">User</h2>
+    <ul class="mt-4 p-0 list">
+      <li routerLink="/dashboard/orders"  routerLinkActive="Active-link" style="font-size: 18px;" class="py-3 mb-1 position-relative d-flex align-items-center"><i class="fa-solid ps-3 me-2 fa-truck-fast"></i><span>Orders</span></li>
+      <li routerLink="/dashboard/todolist"  routerLinkActive="Active-link" style="font-size: 18px;" class="py-3 mb-1 position-relative d-flex align-items-center"><img width="20" class="ms-3" src="./assets/task.png" alt=""><span class="ms-2">To Do List</span></li>
+      <li routerLink="/home"  routerLinkActive="Active-link" style="font-size: 18px;" class="py-3 mb-1 position-relative d-flex align-items-center"><img width="20" class="ms-3" src="./assets/enter_6743805.png" alt=""><span class="ms-2">Website</span></li>
+     </ul>
+</div>

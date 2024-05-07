@@ -1,0 +1,42 @@
+<section class="w-75 login shadow bg-main-light my-3 rounded-3 mx-auto p-4 p-md-5">
+  <h1 class="mb-4">
+    Login Now :
+  </h1>
+  <div class="row">
+    <div class="col-md-7">
+      <form [formGroup]="loginForm" (ngSubmit)="handleForm()">
+
+        <div class="form-item mb-2">
+          <label for="email">Email : </label>
+          <input formControlName="email" type="email" class="form-control mb-1" id="email">
+          <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched" class="alert alert-danger p-1 small">
+            <p class="m-0" *ngIf="loginForm.get('email')?.getError('required')">Email is required</p>
+            <p class="m-0" *ngIf="loginForm.get('email')?.getError('email')">Email invalid format</p>
+          </div>
+        </div>
+        <div class="form-item mb-2">
+          <label for="password">Password : </label>
+          <input formControlName="password" type="password" class="form-control mb-1" id="password">
+          <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="alert alert-danger p-1 small">
+            <p class="m-0" *ngIf="loginForm.get('password')?.getError('required')">Password is required</p>
+            <p class="m-0" *ngIf="loginForm.get('password')?.getError('pattern')">Password must be at least 6 chars</p>
+          </div>
+          <a routerLink="/forgetpassword" class="text-black forget-span text-decoration-underline  d-block fw-bold mt-2">Forget Your Password?</a>
+        </div>
+        <button [disabled]="loginForm.invalid" class="main-btn d-block w-100 mt-3 px-3 fs-5 py-2">
+         <span *ngIf="!isLoading">Login</span> <span *ngIf="isLoading"><i class="fa fa-spin fa-spinner"></i> </span>
+        </button>
+        <a routerLink="/" class="text-black text-center explore-span text-decoration-underline  d-block fw-bold mt-2">Explore More Products</a>
+    </form>
+     <p *ngIf="errMsg" class="alert alert-danger mt-2 small mb-0">{{errMsg}}</p>
+    </div>
+    <div class="col-md-5">
+      <div class="col-md-5 h-100  d-none d-md-flex align-items-center">
+        <img width="300" class="up-down-animation animate-img" src="./assets/Tablet login-amico.png" alt="login image">
+      </div>
+    </div>
+  </div>
+
+</section>
+
+

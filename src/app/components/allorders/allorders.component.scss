@@ -1,0 +1,38 @@
+.accordion-button:focus {
+  box-shadow: none !important;
+}
+.accordion-button:not(.collapsed){
+  background-color: #0aad0a !important;
+  color: white !important;
+}
+@media(max-width:767px){
+  .image-item{
+    max-height: 200px;
+  }
+  .star{
+    max-width: 30px;
+  }
+}
+.box{
+  max-height: 65vh;
+  overflow-y: auto;
+  position:sticky;
+  top:80px;
+}
+.box-shadow{
+  background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 60%, rgb(255, 255, 255) 100%);
+}
+.card-header{
+  background-color: #F2FCF0;
+}
+.box::-webkit-scrollbar {
+  width: 10px;
+}
+.box::-webkit-scrollbar-track {
+  border-radius: 10px; /* Border radius of the track */
+  background-color:white; /* Color of the track */
+}
+.box::-webkit-scrollbar-thumb {
+  border-radius: 10px; /* Border radius of the thumb */
+  background-color: #0aad0a; /* Color of the thumb */
+}

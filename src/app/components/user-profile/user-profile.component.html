@@ -1,0 +1,38 @@
+<section class="user-profile container-fluid my-0 my-sm-3">
+   <div class="row">
+    <div class="col-2 col-sm-3 col-lg-2 p-0 min-vh-100  side rounded-1">
+       <div class="image position-relative">
+        <label class="d-block" for="fileinput"> <img class="mx-auto cursor-pointer d-block" width="150" [src]="image?image:'./assets/avatar2-removebg-preview.png'" alt=""></label>
+         <input
+              type="file"
+              id="fileinput"
+              class="d-none"
+              (change)="uploadImage($event)"
+            />
+        </div>
+       <h2 class="text-center">
+         <span *ngIf="userName">{{userName}}</span>
+         <span *ngIf="!userName">User</span>
+      </h2>
+         <ul class="mt-4 p-0 list">
+           <li [ngClass]="{selectedActive: userInfo}"  (click)="toggleList('userinfo')" style="font-size: 18px;" class="py-3 mb-1 position-relative"> <i class="fa-solid ps-3 me-2  fa-user"></i> <span> User Info</span></li>
+           <li [ngClass]="{selectedActive: password}" (click)="toggleList('password')" style="font-size: 18px;" class="py-3 mb-1 position-relative"><i class="fa-solid  ps-3 me-2 fa-lock"></i> <span> Password</span></li>
+           <li [ngClass]="{selectedActive: address}" (click)="toggleList('address')" style="font-size: 18px;" class="py-3 mb-1 position-relative"><i class="fa-solid  ps-3 me-2 fa-location-dot"></i> <span>Address</span></li>
+           <li routerLink="/wishlist" style="font-size: 18px;" class="py-3 mb-1 position-relative"><i class="fa-solid ps-3 me-2 fa-heart"></i><span>Wishlist</span></li>
+           <li routerLink="/cart" style="font-size: 18px;" class="py-3 mb-1 position-relative"><i class="fa-solid ps-3 me-2 fa-cart-shopping"></i><span>Cart</span></li>
+           <li routerLink="/allorders" style="font-size: 18px;" class="py-3 mb-1 position-relative"><i class="fa-solid ps-3 me-2 fa-truck-fast"></i><span>Orders</span></li>
+          </ul>
+    </div>
+    <div class="col-10 col-sm-9 col-lg-10">
+      <app-userinfo *ngIf="userInfo"></app-userinfo>
+       <app-password *ngIf="password"></app-password>
+       <app-address *ngIf="address"></app-address>
+      </div>
+   </div>
+</section>
+
+
+
+
+
+

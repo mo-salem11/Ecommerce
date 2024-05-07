@@ -1,0 +1,29 @@
+.card img{
+  transition: .5s;
+}
+.card:hover img{
+  transform: scale(1.1);
+}
+.AllProdcutsPagenation ::ng-deep .ngx-pagination .current {
+  background: black;
+  font-weight: 900;
+  border-color: black;
+  font-size: 17px;
+  background: black;
+  color: white;
+  margin-right:0;
+}
+.AllProdcutsPagenation ::ng-deep .ngx-pagination{
+  padding-left: 0;
+  border:1px solid gray !important;
+  border-radius: 10px;
+}
+
+.AllProdcutsPagenation ::ng-deep .ngx-pagination a {
+  border-left:1px solid gray;
+}
+@media(max-width:576px){
+  .star{
+    max-width: 30px;
+  }
+}

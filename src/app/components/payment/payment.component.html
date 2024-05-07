@@ -1,0 +1,43 @@
+<section  class="w-75 mx-auto p-4 my-5 rounded-2 bg-main-light">
+  <div class="row">
+    <div class="col-md-7 ">
+      <h1 class="mb-4">
+       Payment Info :
+      </h1>
+      <form [formGroup]="orderForm" (ngSubmit)="handleFrom()">
+        <div class="from-item mb-4">
+          <label for="details">Your Address :</label>
+          <input [ngClass]="{ 'is-valid': !details.errors,'is-invalid': details.errors && details.touched}" formControlName="details" type="text" id="details" class="form-control mb-1">
+          <div *ngIf="orderForm.get('details')?.errors && orderForm.get('details')?.touched" class="alert alert-danger p-1 small">
+            <p class="m-0" *ngIf="orderForm.get('details')?.getError('required')">Address is required</p>
+            <p class="m-0" *ngIf="orderForm.get('details')?.getError('minlength')">Please provide a complete address with a minimum length of 10 characters.</p>
+          </div>
+        </div>
+        <div class="from-item mb-4">
+          <label for="city">City :</label>
+          <input [ngClass]="{ 'is-valid': !city.errors,'is-invalid': city.errors && city.touched}" formControlName="city" type="text" id="city" class="form-control mb-1">
+          <div *ngIf="orderForm.get('city')?.errors && orderForm.get('city')?.touched" class="alert alert-danger p-1 small">
+            <p class="m-0" *ngIf="orderForm.get('city')?.getError('required')">City is required</p>
+            <p class="m-0" *ngIf="orderForm.get('city')?.getError('minlength')">Please enter the name of your city. It should contain at least 3 characters.</p>
+          </div>
+        </div>
+        <div class="from-item mb-4">
+          <label for="phone">Phone :</label>
+          <input [ngClass]="{ 'is-valid': !phone.errors,'is-invalid': phone.errors && phone.touched}" formControlName="phone" type="tel" id="phone" class="form-control mb-1">
+          <div *ngIf="orderForm.get('phone')?.errors && orderForm.get('phone')?.touched" class="alert alert-danger p-1 small">
+            <p class="m-0" *ngIf="orderForm.get('phone')?.getError('required')">Phone is required.</p>
+            <p class="m-0" *ngIf="orderForm.get('phone')?.getError('pattern')">Accept only Egypt phone numbers.</p>
+          </div>
+        </div>
+        <button class='btn mt-5 btn-lg bg-main text-white d-block w-100'>
+          Online Payment
+          <img width="30" src="./assets/online.png" alt="">
+        </button>
+     </form>
+    </div>
+    <div class="col-md-5 d-none d-md-flex align-items-center">
+      <img class="w-100 up-down-animation" src="./assets/payment-avatar-removebg-preview.png" alt="">
+    </div>
+  </div>
+
+</section>

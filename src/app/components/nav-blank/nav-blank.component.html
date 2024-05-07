@@ -1,0 +1,114 @@
+<nav
+  class="navbar  navbar-expand-sm navbar-light bg-light fixed-top"
+  [class]="showShadow?'shadow':' '"
+>
+  <div class="container-fluid mx-3">
+    <a class="navbar-brand" routerLink="/">
+      <img src="./assets/images/freshcart-logo.svg" alt="logo freshcart">
+    </a>
+    <button
+     #btn
+      class="navbar-toggler d-lg-none"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapsibleNavId"
+      aria-controls="collapsibleNavId"
+     aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div  #list class="collapse navbar-collapse" id="collapsibleNavId">
+      <ul class="navbar-nav navbar-first me-auto mt-2 mt-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link fs-5" routerLinkActive="active-link" routerLink="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5" routerLinkActive="active-link" routerLink="/products">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5" routerLinkActive="active-link" routerLink="/categories">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5" routerLinkActive="active-link" routerLink="/brands">Brands</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav navbar-second ms-auto mt-2 mt-lg-0 align-items-center">
+        <li (click)="toggleIcon()" class="nav-item">
+          <a routerLink="/allorders" class="nav-link fs-5 position-relative me-3 ms-2">
+            <i  class="fa-solid fa-truck-fast fs-4 mx-2"></i>
+                 <span *ngIf="orderNums" style="font-size: 13px;" class="position-absolute bg-danger top-0 start-100 badge rounded mt-2 translate-middle">
+                 {{orderNums}}
+                </span>
+
+            </a>
+        </li>
+        <li (click)="toggleIcon()" class="nav-item">
+          <a routerLink="cart" class="nav-link fs-5 position-relative">
+              <i class='fa-solid fs-4 fa-cart-shopping cartIcon mx-2'></i>
+                 <span *ngIf="cartNums" style="font-size: 13px;" class="position-absolute bg-danger top-0 start-100 badge rounded mt-2 translate-middle">
+                 {{cartNums}}
+                </span>
+
+            </a>
+        </li>
+        <li (click)="toggleIcon()" class="nav-item">
+          <a routerLink="wishlist" class="nav-link fs-5 position-relative mx-3">
+              <i class='fa-solid fs-4 fa-heart cartIcon mx-2'></i>
+               <span *ngIf="wishlistNums" style="font-size: 13px;" class="position-absolute bg-danger top-0 start-100 badge rounded mt-2 translate-middle">
+                {{wishlistNums}}
+               </span>
+              </a>
+        </li>
+        <li  class="nav-item position-relative">
+            <a (click)="toggleList()" class="nav-link " role="button" >
+               <span style="background-color: #323232d2;" class='nav-link rounded-4 px-2  text-white'>
+                <label class="cursor-pointer" for="fileInput"><img class="image-hover rounded-5" width="30" [src]="urlImage?urlImage :'./assets/avatar-removebg-preview.png'" alt=""></label>
+                 <span *ngIf="!userName">User</span><span *ngIf="userName">{{userName}}</span>
+                 <input id="fileInput" type="file" (change)="uploadImgeUser($event)" />
+              </span>
+            </a>
+            <ul *ngIf="showList" style="width:200px" class="position-absolute list-hover top-100 end-50 shadow bg-light rounded-2  p-1 text-center fw-bolder text-muted border">
+              <li (click)="toggleIcon()" routerLink="/profile" class="border-bottom cursor-pointer mb-2 py-2 px-1 "><a >User Profile</a></li>
+              <li (click)="toggleIcon()" routerLink="/dashboard" class="border-bottom cursor-pointer mb-2 py-2 px-1 "><a >Dashboard</a></li>
+              <li (click)="toggleIcon()" class="py-2 px-1"><span (click)="logOut()" class="fs-6  cursor-pointer">
+                <span *ngIf="isLogged">logout</span>
+                <span *ngIf="!isLogged">login</span>
+              </span></li>
+            </ul>
+         </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="navbar_bottom shadow mt-2  navbar-bottom">
+  <ul class='navbar-nav navbar-third m-auto mt-lg-0 justify-content-around d-flex  align-items-center'>
+    <li className="list nav-item">
+      <a routerLink="home" routerLinkActive="active-mobile" class="nav-link d-flex flex-column">
+        <span class="icon text-center fs-4"><i class="fa-solid fa-house"></i></span>
+        <span class="text">Home</span>
+      </a>
+    </li>
+    <li className="list nav-item">
+      <a routerLink="products" routerLinkActive="active-mobile" class="nav-link d-flex flex-column">
+        <span class="icon text-center fs-4"><i class="fa-solid fa-boxes-stacked"></i></span>
+        <span class="text">Products</span>
+      </a>
+    </li>
+    <li className="nav-item">
+      <a routerLink="categories" routerLinkActive="active-mobile" class="nav-link d-flex flex-column">
+        <span class="icon text-center fs-4"><i class="fa-solid fa-list-ul"></i></span>
+        <span class="text">Categories</span>
+      </a>
+    </li>
+    <li className=" nav-item">
+      <a routerLink="brands" routerLinkActive="active-mobile" class="nav-link d-flex flex-column" >
+        <span class="icon text-center fs-4"><i class="fa-solid fa-crown"></i></span>
+        <span class="text">Brands</span>
+      </a>
+    </li>
+
+  </ul>
+  </div>
+

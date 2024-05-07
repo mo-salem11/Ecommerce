@@ -1,0 +1,22 @@
+@media(max-width:767px){
+  .button-cart a{
+    font-size:16px;
+  }
+}
+@media(max-width:576px){
+.clear{
+  font-size: 15px !important;
+}
+.total-price{
+  font-size:16px!important;
+}
+.button-cart a{
+  font-size:14px;
+}
+.button-cart img{
+  width: 17px;
+}
+.button-cart .btn-small{
+  padding:.2rem .4rem;
+}
+}

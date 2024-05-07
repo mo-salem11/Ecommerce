@@ -1,0 +1,6 @@
+<div #modal   (click)="toggleModal(modal)" class="lightBoxContainer d-none">
+<div *ngIf="selectedItem" (click)="stopModalPro($event)" class="bg-light p-3 position-relative mx-4  rounded-4">
+  <i (click)="toggleModal(modal)" style="top:10px; right:15px;" class="position-absolute  fa-regular fa-2x text-danger fa-circle-xmark"></i>
+  <app-product-details [selectedItemModal]="selectedItem"></app-product-details>
+</div>
+</div>

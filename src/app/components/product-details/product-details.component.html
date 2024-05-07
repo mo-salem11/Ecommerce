@@ -1,0 +1,123 @@
+<section  *ngIf="!isLoading" class="my-5 container-fluid container-lg">
+  <div class="row position-relative">
+     <div  style="max-height: 500px;" class="col-md-4 mb-3 d-flex">
+        <div *ngIf="productDetails.images && productDetails.images.length <= 3" class="d-flex flex-column  justify-content-center">
+          <img *ngIf="!imageIsLoading" #firstImage (click)="changePic(currentImage,firstImage)" class="image"
+            [src]="productDetails && productDetails.images && productDetails.images[1] ? productDetails.images[1] : (productDetails && productDetails.images ? productDetails.images[0] : '')"
+            [alt]="productDetails.title">
+            <ngx-skeleton-loader *ngIf="imageIsLoading" [theme]="{width:'90px',marginTop:'20px',height:'127px'}"/>
+          <img *ngIf="!imageIsLoading" #secondImage (click)="changePic(currentImage,secondImage)" class="image"
+          [src]="productDetails && productDetails.images && productDetails.images.length > 2 ? productDetails.images[2] : (productDetails && productDetails.images ? productDetails.images[0] : '')"
+            [alt]="productDetails.title">
+            <ngx-skeleton-loader *ngIf="imageIsLoading" [theme]="{width:'90px',marginTop:'20px',height:'127px'}"/>
+          <img *ngIf="!imageIsLoading" #thirdImage (click)="changePic(currentImage,thirdImage)" class="image"
+          [src]="productDetails && productDetails.images && productDetails.images.length > 3 ? productDetails.images[3] : (productDetails && productDetails.images ? productDetails.images[0] : '')"
+            [alt]="productDetails.title">
+          <ngx-skeleton-loader *ngIf="imageIsLoading" [theme]="{width:'90px',marginTop:'20px',height:'127px'}"/>
+        </div>
+        <div *ngIf="productDetails.images&&productDetails.images.length>3" class="d-flex  flex-column justify-content-around flex-shrink-0 box-images">
+          <div *ngFor="let img of productDetails.images;let i=index">
+            <img class="image" (click)="changePic2(currentImage,'img-'+i)" [attr.id]="'img-'+i"  height="127px" [src]="img" [alt]="productDetails.title">
+          </div>
+        </div>
+      <div
+        class="shadow  position-relative image-container"
+        >    <ngx-skeleton-loader *ngIf="imageIsLoading" [theme]="{width:'100%',position:'absolute',top:'-20px',left:'0',right:'0',bottom:'0',marginTop:'20px',height:'100%'}"/>
+            <img [style]="imageIsLoading?'aspect-ratio: 1/1;':''" (load)="imageLoaded()" #currentImage  class="w-100 h-100  d-block" [src]="productDetails.images && productDetails.images.length > 0 ? productDetails.images[0] : ''" [alt]="productDetails.title" (mouseleave)="handleImageLeave()" (mousemove)="handleImageHover($event)" [class]="zoomedImageTransitionClass">
+            <div *ngIf="showZoomedImage" class="zoomed-image z-3 shadow" [style.backgroundImage]="'url(' + zoomedImageUrl + ')'"  [style.backgroundSize]="zoomedImageSize"  [style.backgroundPosition]="zoomedImagePosition"  [class]="zoomedImageTransitionClass"></div>
+        </div>
+
+     </div>
+     <div *ngIf="!imageIsLoading"   class="col-md-8">
+        <p  class="text-muted m-1">{{productDetails.description}}</p>
+        <h3 *ngIf="!fromModal" class="my-3">{{productDetails.title.split(' ').splice(0,15).join(' ')}}</h3>
+        <h3 *ngIf="fromModal" class="my-3">{{productDetails.title.split(' ').splice(0,15).join(' ')}}</h3>
+        <p *ngIf="productDetails.priceAfterDiscount">Price: <span class="fw-bold text-danger text-decoration-line-through me-3">EGP {{productDetails.price}}</span><span class="fw-bold">EGP{{productDetails.priceAfterDiscount}}</span></p>
+        <p *ngIf="!productDetails.priceAfterDiscount">Price: <span class="fw-bold">EGP {{productDetails.price}}</span></p>
+        <p class="">Available in Stock: <span class="fw-bolder">{{productDetails.quantity}} <i class="fa-solid fa-check"></i></span></p>
+        <p>Sold : <span class="fw-bold">{{productDetails.sold}}</span>
+          <i class="fa-solid ms-1 fa-bag-shopping"></i>
+        </p>
+        <p class='d-flex'>
+          reviews:
+          <app-star-rating [apiRating]="productDetails.ratingsAverage||0"></app-star-rating>
+          <span class="ms-2 fw-bold font-md">
+            {{productDetails.ratingsAverage}}
+            </span>
+        </p>
+        <p>
+          Total Views : <span class="fw-bold">{{productDetails.sold}} <i class="fa-solid fa-eye"></i></span>
+        </p>
+        <p>Category : <a [routerLink]="['/category/',productDetails.category._id]"><span class="fw-bold text-decoration-underline">{{productDetails.category.name}}</span></a></p>
+        <p>Brand : <a [routerLink]="['/brand/',productDetails.brand._id]"><span class="fw-bold text-decoration-underline">{{productDetails.brand.name}}</span></a></p>
+        <div class="d-flex align-items-center">
+          <div>
+            <select [(ngModel)]="selectedValue" class="form-select form-select-sm" aria-label="Small select example">
+              <option class="text-center" value="1">1</option>
+              <option class="text-center" value="2">2</option>
+              <option class="text-center" value="3">3</option>
+              <option class="text-center" value="4">4</option>
+              <option class="text-center" value="5">5</option>
+              <option class="text-center" value="6">6</option>
+              <option class="text-center" value="7">7</option>
+              <option class="text-center" value="8">8</option>
+              <option class="text-center" value="9">9</option>
+              <option class="text-center" value="10">10</option>
+            </select>
+          </div>
+          <div>
+            <button #btnupdate (click)="updateProductQuantity(productDetails._id,btnupdate)" style="padding-block: 11px;" class="main-btn bg-warning mx-3 fs-5 px-2 px-sm-5">
+              <span *ngIf="!loadingUpdate">Update Quantity</span>
+             <span *ngIf="loadingUpdate"><i class="fa fa-spin fa-spinner"></i> loading...</span>
+            </button>
+          </div>
+        </div>
+        <div class="d-flex mt-3 align-items-center">
+          <div class="me-3">
+            <button  #btncart (click)="addToCart(productDetails._id,btncart)" style="padding-block: 9px;" class="main-btn  fs-5  px-3">
+              <span *ngIf="!loadingCart">Add To Cart</span>
+             <span *ngIf="loadingCart"><i class="fa fa-spin fa-spinner"></i> loading...</span>
+            </button>
+          </div>
+          <div class="heart">
+            <div class="heart-container">
+              <div (click)="removeFromWishlist(productDetails._id)" *ngIf="wishlistSet.has(productDetails._id)"  class="svg-container">
+                <i class="fa-solid text-danger fs-5 fa-heart"></i>
+                  <svg class="svg-celebrate" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+                      <polygon points="10,10 20,20"></polygon>
+                      <polygon points="10,50 20,50"></polygon>
+                      <polygon points="20,80 30,70"></polygon>
+                      <polygon points="90,10 80,20"></polygon>
+                      <polygon points="90,50 80,50"></polygon>
+                      <polygon points="80,80 70,70"></polygon>
+                  </svg>
+              </div>
+              <div (click)="addToWishlist(productDetails._id)" *ngIf="!wishlistSet.has(productDetails._id)"   class="svg-container">
+                <i class="fa-solid fs-5 fa-heart"></i>
+              </div>
+          </div>
+          </div>
+        </div>
+     </div>
+     <div *ngIf="imageIsLoading" class="col-md-8">
+      <div class="d-flex flex-column">
+        <ngx-skeleton-loader  [theme]="{width:'100%',marginTop:'20px',height:'50px'}"/>
+        <ngx-skeleton-loader  [theme]="{width:'20%',height:'30px'}"/>
+        <ngx-skeleton-loader  [theme]="{width:'15%',height:'30px'}"/>
+        <ngx-skeleton-loader  [theme]="{width:'20%',height:'30px'}"/>
+        <ngx-skeleton-loader  [theme]="{width:'15%',height:'30px'}"/>
+        <ngx-skeleton-loader  [theme]="{width:'25%',height:'30px'}"/>
+        <ngx-skeleton-loader  [theme]="{width:'20%',height:'30px'}"/>
+        <ngx-skeleton-loader  [theme]="{width:'30%',height:'30px'}"/>
+         <div class="flex-row">
+          <ngx-skeleton-loader  [theme]="{width:'10%' ,marginRight:'5px',height:'50px'}"/>
+          <ngx-skeleton-loader  [theme]="{width:'30%',height:'50px'}"/>
+         </div>
+         <div class="flex-row">
+          <ngx-skeleton-loader  [theme]="{width:'20%' ,marginRight:'5px',height:'50px'}"/>
+          <ngx-skeleton-loader  [theme]="{width:'7%',height:'50px'}"/>
+         </div>
+      </div>
+     </div>
+  </div>
+</section>

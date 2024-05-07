@@ -1,0 +1,21 @@
+.card-header{
+  background-color:rgb(242, 252, 240);
+ }
+.box{
+  max-height: 350px;
+  overflow-y: auto;
+  position:relative;
+}
+
+.box::-webkit-scrollbar {
+  width: 10px;
+}
+.box::-webkit-scrollbar-track {
+  border-radius: 10px; /* Border radius of the track */
+  background-color:white; /* Color of the track */
+}
+.box::-webkit-scrollbar-thumb {
+  border-radius: 10px; /* Border radius of the thumb */
+  background-color: #0aad0a; /* Color of the thumb */
+}
+

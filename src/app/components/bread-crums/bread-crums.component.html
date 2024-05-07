@@ -1,0 +1,10 @@
+<nav *ngIf="breadcrumbs.length > 1">
+  <ul class="breadcrumb">
+    <li *ngFor="let crumb of breadcrumbs; index as i">
+      <a *ngIf="i < breadcrumbs.length - 1" [routerLink]="'/' + breadcrumbs.slice(0, i + 1).join('/')">{{ crumb }}</a>
+      <span *ngIf="i === breadcrumbs.length - 1">{{ crumb }}</span>
+      <i class="fa-solid fa-arrow-right mx-2" *ngIf="i < breadcrumbs.length - 1"></i>
+    </li>
+  </ul>
+</nav>
+

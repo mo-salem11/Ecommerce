@@ -1,0 +1,35 @@
+:host{
+  margin-top:auto;
+}
+@media(max-width:767px){
+  footer{
+    margin-bottom: 90px;
+  }
+  h2{
+    font-size:20px !important;
+  }
+  .desc{
+    font-size:18px !important;
+  }
+  .type-pay p{
+    font-size:16px !important;
+  }
+  .type-pay img{
+    width:70px !important;
+  }
+}
+@media(max-width:576px){
+  .type-pay p{
+    font-size:15px !important;
+     margin:2px 0 10px;
+  }
+  .type-pay img{
+    width:45px !important;
+  }
+  .visa img{
+    width:30px !important;
+  }
+  .copyright{
+    font-size:15px !important;
+  }
+}

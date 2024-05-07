@@ -1,0 +1,8 @@
+::ng-dead .star{
+ width:40px;
+}
+@media(max-width:767px){
+  .star{
+    max-width: 30px;
+  }
+}

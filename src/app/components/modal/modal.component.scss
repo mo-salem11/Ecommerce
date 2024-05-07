@@ -1,0 +1,11 @@
+
+.lightBoxContainer {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 11111111111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}

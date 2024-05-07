@@ -1,0 +1,14 @@
+<section style="padding-bottom: 60px;margin-top: 20px;" class="container" *ngIf="products.length>0">
+  <h2 class="fw-bold text-center mb-5">
+    <img  #test  class="star" src="./assets/star.png" alt="">
+    Your Favourite Products
+      <img   #test class="star"   src="./assets/star.png" alt="">
+  </h2>
+  <div class="row  g-2 g-sm-5">
+    <div  *ngFor="let product of products " class="col-6  col-lg-3 col-md-4 ">
+           <app-product (openModal)="openModal($event)" (filterProduct)="filterProducts($event)" [fromWishlistPage]="true" [fixUrlImgWishlist]="fixUrlImgWishlist" [item]="product"></app-product>
+    </div>
+  </div>
+  <app-modal [item]="selectedModalItem"></app-modal>
+
+</section>

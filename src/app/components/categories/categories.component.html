@@ -1,0 +1,28 @@
+<section class="container mb-5">
+  <h2 class="fw-bold text-center mb-1">
+    <img #test  class="star" src="./assets/star.png" alt="">
+       All Categories
+    <img #test  class="star" src="./assets/star.png" alt="">
+  </h2>
+  <div class="row justify-content-center g-3 g-md-5">
+    <div *ngFor="let cat of categories;let i=index" class="col-lg-3 col-md-4 col-6">
+      <a class="position-relative" [routerLink]="['/category/'+cat._id]">
+        <div  class="card overflow-hidden shadow-sm">
+          <img [style]="imageIsLoading?'aspect-ratio: 1/1;':''" (load)="imageLoaded()" height="200" [src]="cat.image" class="card-img-top" [alt]="cat.name">
+          <div  class="card-body">
+            <h3 class="h6  text-main text-center fw-bold">{{cat.name}}</h3>
+          </div>
+        </div>
+        <div *ngIf="imageIsLoading" class="position-absolute w-100 h-100 top-0 start-0 end-0 bottom-0 z-3 ">
+          <div  class="card overflow-hidden shadow-sm">
+            <ngx-skeleton-loader [theme]="{height:'200px'}" />
+            <div class="card-body ">
+              <h3 class="h6 text-center "><ngx-skeleton-loader [theme]="{height:'20px',width:'50%'}"/></h3>
+            </div>
+          </div>
+
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

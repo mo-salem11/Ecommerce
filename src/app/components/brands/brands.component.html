@@ -1,0 +1,42 @@
+<section class="container mb-5">
+  <h2 class="fw-bold text-center mb-1">
+    <img #test  class="star" src="./assets/star.png" alt="">
+       All Brands
+    <img #test  class="star" src="./assets/star.png" alt="">
+  </h2>
+  <div class="row g-3 g-md-5">
+    <div *ngFor="let brand of brands
+          |paginate: { id: 'BrandPaginate',
+          itemsPerPage: pageSize,
+          currentPage: currentPage,
+          totalItems: total };let i=index"
+          class="col-lg-3 col-md-4 col-6">
+      <a class="position-relative" [routerLink]="['/brand/'+brand._id]">
+        <div class="card overflow-hidden shadow-sm">
+          <img [style]="imageIsLoading?'aspect-ratio: 1/1;':''" (load)="imageLoaded()" height="200" [src]="brand.image" class="card-img-top" [alt]="brand.name">
+        </div>
+        <div *ngIf="imageIsLoading" class="position-absolute w-100 h-100 top-0 start-0 end-0 bottom-0 z-3 ">
+        <div class="card overflow-hidden">
+          <ngx-skeleton-loader [theme]="{height:'200px',marginBottom:'-5px'}" />
+        </div>
+       </div>
+      </a>
+
+    </div>
+  </div>
+  <div  class="d-flex mt-5 justify-content-center align-items-center">
+    <pagination-controls class="AllProdcutsPagenation"  id="BrandPaginate"
+    (pageChange)="pageChanged($event)"
+    (pageBoundsCorrection)="pageChanged($event)"
+    [maxSize]="5"
+    [directionLinks]="true"
+    [autoHide]="true"
+    [responsive]="true"
+    previousLabel=""
+    nextLabel=""
+    screenReaderPaginationLabel="Pagination"
+    screenReaderPageLabel="page"
+    screenReaderCurrentLabel="You're on page">
+ </pagination-controls>
+  </div>
+</section>

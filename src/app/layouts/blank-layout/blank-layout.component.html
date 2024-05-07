@@ -1,0 +1,8 @@
+
+  <nav-blank></nav-blank>
+  <div class="fixed-problem">
+    <router-outlet></router-outlet>
+  </div>
+
+<app-footer></app-footer>
+<button *ngIf="showScrollTopButton" (click)="goToUp()" class="btn-up main-btn"><i class="fa-solid fa-angle-up"></i></button>

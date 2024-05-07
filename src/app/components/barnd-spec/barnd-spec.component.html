@@ -1,0 +1,32 @@
+<section *ngIf="!isLoading"  class="container-fluid container-md my-4 rounded-5 bg-main-light p-2 p-md-3 p-lg-5">
+   <div>
+    <div class="row me-0 align-items-center">
+      <div class="col-md-2 mb-md-0 mb-3 position-relative">
+          <img  [style]="imageIsLoading?'aspect-ratio: 1/1;':''" (load)="imageLoaded()" height="200" class="w-100 rounded" [src]="Brand.image" [alt]="Brand.name">
+          <ngx-skeleton-loader *ngIf="imageIsLoading" [theme]="{position:'absolute',top:'0',left:'0',bottom:'0',right:'0',height:'100%',width:'100%'}"/>
+        </div>
+      <div class="col-10">
+         <p class="fs-5 brand-name m-0 mb-3">Brand Name : <span class="fw-bold">{{Brand.name}}</span></p>
+         <p class="fs-6 date">Last Update : <span class="fw-bolder">{{Brand.createdAt}}</span></p>
+      </div>
+    </div>
+    <div  class="mt-5">
+      <h2 class='fw-semibold fs-3 text-muted mb-3'>Featured Products</h2>
+      <owl-carousel-o [options]="customOptions">
+
+        <ng-container  *ngFor="let product of allProducts |selectedBrand:Brand.name">
+          <ng-template  carouselSlide >
+              <app-product  (openModal)="openModal($event)" [fromSubCat]="true" [wishlistSet]="wishlistSet" [item]="product"></app-product>
+          </ng-template>
+        </ng-container>
+
+      </owl-carousel-o>
+    </div>
+   </div>
+   <div style="max-width: 500px;"*ngIf="(allProducts | selectedBrand: Brand.name).length === 0" class="d-flex notavailble flex-column mx-auto  text-center ">
+    <img width="300" class="mx-auto  d-block" src="./assets/notavailble.png" alt="notavailble image problem">
+    <h3 class="fw-bold apology text-muted h5">Apologies, the items you're searching for is presently out of stock.</h3>
+  </div>
+
+  <app-modal [item]="selectedModalItem"></app-modal>
+</section>
